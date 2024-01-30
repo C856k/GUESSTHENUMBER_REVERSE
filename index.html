@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess the number</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Number guesser</h1>
+    <p>Think of a number between 1 and 100, that i have to guess</p>
+    <div id="guess"></div>
+    <button onclick="startGuessing()">Start Guessing</button>
+    <button id="higher-btn" onclick="guessHigher()" disabled>Higher</button>
+    <button id="lower-btn" onclick="guessLower()" disabled>Lower</button>
+    <button onclick="correctGuess()">Correct</button>    
+    <script src="script.js"></script>
+</body>
+</html>

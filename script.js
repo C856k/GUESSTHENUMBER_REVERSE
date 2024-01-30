@@ -1,36 +1,45 @@
 "use strict"
 
-let min = 1;
-let max = 100;
-let guess;
-let resultDiv = document.getElementById('guess');
+document.addEventListener('DOMContentLoaded', function() {
+    let min;
+    let max;
+    let guess;
+    let resultDiv = document.getElementById('guess') 
+    
 
-function startGuessing(){
-guess = Math.floor(Math.random()*(max-min+1))+min;
-resultDiv.innerHTML = `<p>Is your number ${guess}</p>`;
-document.getElementById('higher-btn').disabled = false;
-document.getElementById('lower-btn').disabled = false;
-}
+    function startGuessing() {
+        min = 1;
+        max = 100;
+        makeGuess();
+    }
 
-function guessHigher() {
-    min = guess + 1;
-    makeGuess();
-}
+    function guessHigher() {
+        min = guess + 1;
+        makeGuess();
+    }
 
-function guessLower() {
-    max = guess -1;
-    makeGuess();
-}
+    function guessLower(){
+        min = guess - 1;
+        makeGuess();
+    }
 
-function makeGuess() {
-    guess = Math.floor(Math.random()*(max-min+1)) + min;
-    resultDiv.innerHTML = `<p>Is your number ${guess}?</p>`;
-}
+    function makeGuess(){
+        guess = Math.floor(Math.random() * (max - min + 1)) + min;
+        resultDiv.innerHTML = `<p>Is your number ${guess}?</p>`;
+    }
 
-function correctGuess() {
-    resultDiv.innerHTML = `<p>Yay! Your number was ${guess}!</p>`;
-    document.getElementById('higher-btn').disabled=true;
-    document.getElementById('lower-btn').disabled=true;
-}
+    function correctGuess(){
+        resultDiv.innerHTML = `<p>Yay! I guessed your number, which was ${guess}!</p>`;
+        disableButtons();
+    }
 
+    function disableButtons(){
+        document.getElementById('higher-btn').disabled = true;
+        document.getElementById('lower-btn').disabled = true;
+    }
 
+    document.getElementById('start-btn').addEventListener('click', startGuessing);
+    document.getElementById('higher-btn').addEventListener('click', guessHigher);
+    document.getElementById('lower-btn').addEventListener('click',guessLower);
+    document.getElementById('correct-btn').addEventListener('click',correctGuess);
+});

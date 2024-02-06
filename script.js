@@ -1,11 +1,10 @@
-"use strict"
+"use strict";
 
 document.addEventListener('DOMContentLoaded', function() {
     let min;
     let max;
     let guess;
-    let resultDiv = document.getElementById('guess') 
-    
+    let resultDiv = document.getElementById('guess');
 
     function startGuessing() {
         min = 1;
@@ -19,12 +18,12 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function guessLower(){
-        min = guess - 1;
+        max = guess - 1;
         makeGuess();
     }
 
     function makeGuess(){
-        guess = Math.floor(Math.random() * (max - min + 1)) + min;
+        guess = Math.floor((min + max) / 2); // Use binary search to guess
         resultDiv.innerHTML = `<p>Is your number ${guess}?</p>`;
     }
 
@@ -40,6 +39,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     document.getElementById('start-btn').addEventListener('click', startGuessing);
     document.getElementById('higher-btn').addEventListener('click', guessHigher);
-    document.getElementById('lower-btn').addEventListener('click',guessLower);
-    document.getElementById('correct-btn').addEventListener('click',correctGuess);
+    document.getElementById('lower-btn').addEventListener('click', guessLower);
+    document.getElementById('correct-btn').addEventListener('click', correctGuess);
 });
+
